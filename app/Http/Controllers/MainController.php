@@ -24,7 +24,16 @@ class MainController extends Controller
     }
 
     public function charts()
-    {
-        return view('chart_list');
+    {/*
+        $employeesChart = Employees::all()->get([
+            DB::raw('Date(created_at) as date'),
+            DB::raw('COUNT(gender) as value')
+        ])->toJSON();*/
+
+        $male = Employees::where('gender', '=', 'M')->count();
+        $female = Employees::where('gender', '=', 'F')->count();
+        //dd($male);
+        //dd($employeesChart);
+        return view('chart_list', ['employeesChartMale' => $male, 'employeesChartFemale' => $female]);
     }
 }
