@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Employees;
+use App\Employee;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
     public function index()
     {
-        $employees = Employees::paginate(10);
+        $employees = Employee::paginate(10);
         return view('index', ['employees' => $employees]);
     }
 
