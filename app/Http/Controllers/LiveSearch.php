@@ -10,22 +10,20 @@ class LiveSearch extends Controller
     public function action(Request $request)
     {
         if ($request->ajax()) {
+            $output = '';
             $query = $request->get('query');
             if ($query != '') {
                 $data = DB::table('dept_manager')
-                    ->where('emp_no', 'like', '%' . $query . '%')
-                    ->orWhere('dept_no', 'like', '%' . $query . '%')
-                    ->orWhere('from_date', 'like', '%' . $query . '%')
-                    ->orWhere('to_date', 'like', '%' . $query . '%')
-                    ->paginate(15);
+                    ->where('emp_no', 'like', '%'.$query.'%')
+                    ->orWhere('dept_no', 'like', '%'.$query.'%')
+                    ->orWhere('from_date', 'like', '%'.$query.'%')
+                    ->orWhere('to_date', 'like', '%'.$query.'%')
+                    ->get();
             } else {
                 $data = DB::table('dept_manager')
                     ->orderBy('emp_no', 'desc')
-                    ->paginate(15);
+                    ->get();
             }
-
-            $output = '<div id="pagination">'.$data->links().'</div>';
-
             $total_row = $data->count();
             if ($total_row > 0) {
                 foreach ($data as $row) {
