@@ -9,8 +9,8 @@ class LiveSearch extends Controller
 {
     public function action(Request $request)
     {
+        $output = '';
         if ($request->ajax()) {
-            $output = '';
             $query = $request->get('query');
             if ($query != '') {
                 $data = DB::table('dept_manager')
@@ -25,7 +25,9 @@ class LiveSearch extends Controller
                     ->get();
             }
             $total_row = $data->count();
+            $output = '';
             if ($total_row > 0) {
+                //$output = ''.$data->render().'';
                 foreach ($data as $row) {
                     $output .= '
                 <tr>
@@ -43,7 +45,7 @@ class LiveSearch extends Controller
                 </tr>
                 ';
             }
-            $data = array(
+            $data = array (
                 'table_data' => $output,
                 'total_data' => $total_row
             );
