@@ -27,3 +27,5 @@ Route::get('charts', 'MainController@charts')->name('charts');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('search/action', 'LiveSearch@action')->name('search.action');

@@ -1,6 +1,4 @@
-@extends('layout')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -34,7 +32,7 @@
 
             function fetch_data(query = '') {
                 $.ajax({
-                    url:"{{route('search.action')}}",
+                    url:"<?php echo e(route('search.action')); ?>",
                     method:'GET',
                     data:{query:query},
                     dataType:'json',
@@ -93,4 +91,5 @@
             //     }
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

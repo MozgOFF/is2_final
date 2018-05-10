@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $employees = Employee::paginate(10);
+        if ($request->ajax()) {
+            return view('employees', compact('employees'));
+        }
         return view('index', ['employees' => $employees]);
     }
 
@@ -30,8 +33,8 @@ class MainController extends Controller
             DB::raw('COUNT(gender) as value')
         ])->toJSON();*/
 
-        $male = Employees::where('gender', '=', 'M')->count();
-        $female = Employees::where('gender', '=', 'F')->count();
+        $male = Employee::where('gender', '=', 'M')->count();
+        $female = Employee::where('gender', '=', 'F')->count();
         //dd($male);
         //dd($employeesChart);
         return view('chart_list', ['employeesChartMale' => $male, 'employeesChartFemale' => $female]);
