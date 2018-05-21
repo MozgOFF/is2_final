@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layout')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -20,6 +20,20 @@
                                 @if ($errors->has('name'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('emp_id') ? ' has-error' : '' }}">
+                            <label for="emp_id" class="col-md-4 control-label">Employee ID</label>
+
+                            <div class="col-md-6">
+                                <input id="emp_id" type="text" class="form-control" name="emp_id" value="{{ old('emp_id') }}" required autofocus>
+
+                                @if ($errors->has('emp_id'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('emp_id') }}</strong>
                                     </span>
                                 @endif
                             </div>

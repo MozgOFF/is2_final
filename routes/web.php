@@ -28,4 +28,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Route::post('/index', 'Auth\LoginController@getLogout')->name('logout.get');
+
 Route::get('search/action', 'LiveSearch@action')->name('search.action');

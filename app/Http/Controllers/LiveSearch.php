@@ -9,6 +9,7 @@ class LiveSearch extends Controller
 {
     public function action(Request $request)
     {
+        //$output = ''.$data->links().'';
         $output = '';
         if ($request->ajax()) {
             $query = $request->get('query');
@@ -25,7 +26,6 @@ class LiveSearch extends Controller
                     ->get();
             }
             $total_row = $data->count();
-            $output = '';
             if ($total_row > 0) {
                 //$output = ''.$data->render().'';
                 foreach ($data as $row) {
