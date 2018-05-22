@@ -11,11 +11,10 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                     <tr class="success">
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Gender</th>
-                        <th>Hire date</th>
-                        <th>Birth date</th>
+                        <th>emp_no</th>
+                        <th>dept_no</th>
+                        <th>from_date</th>
+                        <th>to_date</th>
                     </tr>
                     </thead>
                     <tbody>

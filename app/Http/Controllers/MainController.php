@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use App\Salary;
+use App\Title;
 use Illuminate\Http\Request;
+use App\Department;
+use App\DeptEmp;
+use App\DepManager;
 
 class MainController extends Controller
 {
@@ -19,7 +23,37 @@ class MainController extends Controller
 
     public function tables()
     {
-        return view('table_list');
+        $departments = Department::paginate(5);
+        $employees = Employee::paginate(5);
+        $dep_emp = DeptEmp::paginate(5);
+        $dep_manager = DepManager::paginate(5);
+        $salaries = Salary::paginate(5);
+        $titles = Title::paginate(5);
+
+//        $departmentsc = Department::all()->count();
+//        $titlesc = Title::all()->count();
+//        $dep_empc = DeptEmp::all()->count();
+//        $dep_managerc = DepManager::all()->count();
+//        $salariesc = Salary::all()->count();
+//        $employeesc = Employee::all()->count();
+
+
+        $data = array (
+            'departments' => $departments,
+            'employees' => $employees,
+            'dep_emp' => $dep_emp,
+            'dep_manager' => $dep_manager,
+            'salaries' => $salaries,
+            'titles' => $titles,
+//            'departmentsc' => $departmentsc,
+//            'employeesc' => $employeesc,
+//            'dep_empc' => $dep_empc,
+//            'dep_managerc' => $dep_managerc,
+//            'salariesc' => $salariesc,
+//            'titlesc' => $titlesc,
+        );
+
+        return view('table_list', ['data' => $data]);
     }
 
     public function search()
